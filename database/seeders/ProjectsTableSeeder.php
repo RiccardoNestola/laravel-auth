@@ -24,7 +24,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->category = $faker->word();
             $newProject->year = $faker->year();
             $newProject->technology_used = $faker->word();
-            $newProject->thumb = $faker->text();
+            $newProject->thumb = $faker->imageUrl();
             $newProject->date_added = $faker->date();
             $newProject->save();
         }

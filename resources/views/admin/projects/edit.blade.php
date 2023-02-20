@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
             <div class="p-3 d-flex justify-content-end">
-                <a class="btn btn-success btn-sm" href="{{ route ("admin.projects.create")}}"><i class="fa-solid fa-plus text-white"></i></a>
+                <a class="btn btn-warning btn-sm" href="{{ route ("project.create")}}"></i>Aggiungi nuovo</a>
             </div>
             <table class="table">
                 <thead>
@@ -23,7 +23,7 @@
                     @foreach ($projects as $project)
                   <tr>
                     <th scope="row">{{$project->id}}</th>
-                    <td class="">{{$project->title}}</td>
+                    <td class="w-25">{{$project->title}}</td>
                     <td class="d-none d-md-table-cell w-25">{{ Str::limit($project->description,20)}}</td>
                     <td class="d-none d-md-table-cell">{{$project->category}}</td>
                     <td class="d-none d-md-table-cell">{{$project->year}}</td>
@@ -31,21 +31,21 @@
                     <td class="d-none d-md-table-cell"><img class="img-fluid rounded" src="{{$project->thumb}}" alt=""></td>
                     <td class="d-none d-md-table-cell w-25">{{$project->date_added}}</td>
                     <td>
-                      <a href="{{ route("admin.projects.show", $project->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-binoculars text-white"></i></a>
+                      <a href="{{ route("$project.show", $project->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-folder2-open"></i></a>
                     </td>
                     <td>
-                      <form action="{{ route ("admin.projects.edit", $project->id) }}" method="GET">
+                      <form action="{{ route ("$project.edit", $product->id) }}" method="GET">
                         
-                        <button class="btn btn-warning btn-sm" type="submit"><i class="fa-solid fa-pen-to-square text-white"></i></button>
+                        <button class="btn btn-warning btn-sm" type="submit"><i class="bi bi-pencil-square"></i></button>
                       
                       </form>
                         
                     </td>
                     <td>
-                        <form class="form-delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.destroy', $project->id)}}" method="post">
+                        <form class="form-delete" data-element-name="{{ $project->title}}" action="{{ route('$project.destroy', $product->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button  class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash-can text-white"></i></button>
+                          <button  class="btn btn-danger btn-sm" type="submit"><i class="bi bi-archive"></i></button>
                         </form>
                     </td>
                     @endforeach
