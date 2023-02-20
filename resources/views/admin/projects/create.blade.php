@@ -45,8 +45,10 @@
   </div>
   <div class="form-group row p-3">
     <div class="col-sm-12">
-      <button type="submit" class="btn btn-primary">Salva</button>
+      <a class="btn btn-secondary btn-sm" href="{{ route ("admin.projects.index") }}"><i class="fa-solid fa-chevron-left text-white"></i></a>
+      <button type="submit" class="btn btn-success btn-sm">Salva</button>
     </div>
+    
   </div>
 </form>
 
