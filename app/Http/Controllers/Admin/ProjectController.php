@@ -40,7 +40,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $formData = $request->all();
+
+        $newProject = new Project();
+        $newProject->fill($formData);
+
+
+        $newProject->save();
+
+        return redirect()->route("admin.projects.show", $newProject->id);
     }
 
     /**
@@ -49,9 +58,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**

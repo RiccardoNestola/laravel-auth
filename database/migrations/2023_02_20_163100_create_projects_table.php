@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('year');
             $table->string('technology_used');
             $table->text('thumb')->nullable();
-            $table->date('date_added');
+            /* $table->date('date_added'); */
             $table->timestamps();
         });
     }

@@ -1,56 +1,44 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-            <div class="p-3 d-flex justify-content-end">
-{{--                 <a class="btn btn-warning btn-sm" href="{{ route ("project.create")}}"></i>Aggiungi nuovo</a>
- --}}            </div>
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Titolo</th>
-                    <th scope="col" class="d-none d-md-table-cell">Descrizione</th>
-                    <th scope="col" class="d-none d-md-table-cell">Categoria</th>
-                    <th scope="col" class="d-none d-md-table-cell">Anno</th>
-                    <th scope="col" class="d-none d-md-table-cell">Tecnologia</th>
-                    <th scope="col" class="d-none d-md-table-cell">Immagine</th>
-                    <th scope="col" class="d-none d-md-table-cell">Data</th>
-                    <th scope="col" class="d-none d-md-table-cell"><i class="bi bi-pencil-fill"></i></th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($projects as $project)
-                  <tr>
-                    <th scope="row">{{$project->id}}</th>
-                    <td class="w-25">{{$project->title}}</td>
-                    <td class="d-none d-md-table-cell w-25">{{ Str::limit($project->description,20)}}</td>
-                    <td class="d-none d-md-table-cell">{{$project->category}}</td>
-                    <td class="d-none d-md-table-cell">{{$project->year}}</td>
-                    <td class="d-none d-md-table-cell w-25">{{$project->technology_used}}</td>
-                    <td class="d-none d-md-table-cell"><img class="img-fluid rounded" src="{{$project->thumb}}" alt=""></td>
-                    <td class="d-none d-md-table-cell w-25">{{$project->date_added}}</td>
-                    <td>
-                      {{-- <a href="{{ route("$project.show", $project->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-folder2-open"></i></a> --}}
-                    </td>
-                    <td>
-                      {{-- <form action="{{ route ("$project.edit", $product->id) }}" method="GET">
+ <div class="container my-5">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{{$project->thumb}}" alt="Img" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <h2 class="my-3">{{$project->title}}</h2>
+            <p><strong>Descrizione</strong> {{$project->description}}</p>
+            <p><strong>Categoria</strong> {{$project->category}}</p>
+            <p><strong>Anno</strong> {{$project->year}}</p>
+            <p><strong>Tecnologia usata</strong> {{$project->technology_used}}</p>
+            <p><strong>ID:</strong>{{$project->id}}</p>
+            
+
+            <form class="d-inline-block" action="{{ route ("admin.projects.index") }}" method="GET">
                         
-                        <button class="btn btn-warning btn-sm" type="submit"><i class="bi bi-pencil-square"></i></button>
-                      
-                      </form> --}}
+              <button class="btn btn-secondary btn-sm" type="submit"><i class="fa-solid fa-chevron-left text-white"></i></button>
+            
+            </form>
+
+
+            <form class="d-inline-block" action="{{ route ("admin.projects.edit", $project->id) }}" method="GET">
                         
-                    </td>
-                    <td>
-                        {{-- <form class="form-delete" data-element-name="{{ $project->title}}" action="{{ route('$project.destroy', $product->id)}}" method="post">
-                          @csrf
-                          @method('DELETE')
-                          <button  class="btn btn-danger btn-sm" type="submit"><i class="bi bi-archive"></i></button>
-                        </form> --}}
-                    </td>
-                    @endforeach
-                  </tr>
-                </tbody>
-              </table>
+              <button class="btn btn-warning btn-sm" type="submit"><i class="fa-solid fa-pen-to-square text-white"></i></button>
+            
+            </form>
+
+
+            <form class="d-inline-block form-delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.destroy', $project->id)}}" method="POST">
+              @csrf
+              @method("DELETE")
+              <button  class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+            </form>
+          </div>
+
+
+
         </div>
+      </div>
+
 @endsection
