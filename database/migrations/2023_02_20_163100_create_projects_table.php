@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('category', 100)->default('untitled category');
             $table->integer('year');
             $table->string('technology_used');
-            $table->string('thumb')->nullable();;
+            $table->string('thumb')->nullable();
             $table->timestamp('date_added')->useCurrent();
             $table->timestamps();
         });
