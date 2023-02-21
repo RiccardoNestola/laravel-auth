@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Elenco - Progetti')
 @section('content')
 <div class="container">
             <div class="p-3 d-flex justify-content-end">
@@ -52,5 +52,8 @@
                   </tr>
                 </tbody>
               </table>
+              {{ $projects->links() }}
         </div>
+
+        
 @endsection

@@ -54,7 +54,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::paginate(20);
         return view( "admin.projects.index",  compact("projects"));
 
     }
@@ -138,6 +138,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $project->delete();
+
+        return redirect()->route('admin.projects.index');
     }
 }

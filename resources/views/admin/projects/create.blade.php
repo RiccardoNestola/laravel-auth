@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Crea nuovo progetto')
 @section('content')
 
 <div class="container">
