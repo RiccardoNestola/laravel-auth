@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Elenco - Progetti')
 @section('content')
+@include('admin.projects.partials.popup')
 <div class="container">
             <div class="py-4 d-flex justify-content-end">
                 <a class="btn btn-secondary btn-sm p-2 g-2 bs-info-text" href="{{ route ("admin.dashboard")}}">Dashboard</a>
@@ -45,7 +46,7 @@
                         
                     </td>
                     <td>
-                        <form class="form-delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.destroy', $project->id)}}" method="post">
+                        <form class="form-delete delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.destroy', $project->id)}}" method="post">
                           @csrf
                           @method('DELETE')
                           <button  class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i></button>
@@ -59,4 +60,10 @@
         </div>
 
         
+
+        
+@endsection
+
+@section('script')
+    @vite('resources/js/confirmDelete.js')
 @endsection

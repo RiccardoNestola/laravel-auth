@@ -35,7 +35,7 @@
             </form>
 
 
-            <form class="d-inline-block form-delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.destroy', $project->id)}}" method="POST">
+            <form class="d-inline-block form-delete delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.destroy', $project->id)}}" method="POST">
               @csrf
               @method("DELETE")
               <button  class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash-can"></i></button>
@@ -47,4 +47,8 @@
         </div>
       </div>
 
+@endsection
+
+@section('script')
+    @vite('resources/js/confirmDelete.js')
 @endsection

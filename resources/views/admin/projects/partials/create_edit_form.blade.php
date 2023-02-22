@@ -1,4 +1,6 @@
-
+@if ($errors->any())
+    <div id="popup_message" class="d-none" data-type="warning" data-message="Check errors"></div>
+@endif
 
 <form class="pt-3" action="{{ route ("admin.projects.store") }}" method="POST"> @csrf
   <div class="form-group row p-3">
@@ -79,3 +81,7 @@
     
   </div>
 </form>
+
+{{-- @section('script')
+    @vite('resources/js/confirmDelete.js')
+@endsection --}}
