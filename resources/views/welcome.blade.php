@@ -14,7 +14,7 @@
 				<h1 class="postcard__title blue"><a href="#">{{$project->title}}</a></h1>
 				<div class="postcard__subtitle small">
 					<time datetime="2020-05-25 12:00:00">
-						<i class="fas fa-calendar-alt mr-2"></i> <span>Martedi, 21 Febbraio 2023</span> // creare migration e seeder per la data
+						<i class="fas fa-calendar-alt mr-2"></i> <span>{{$project->date_added}}</span>
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
