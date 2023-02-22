@@ -39,7 +39,7 @@
   <div class="form-group row p-3">
     <label for="year" class="col-sm-2 col-form-label fw-bold">Anno</label>
     <div class="col-sm-10">
-      <input type="number" min="1995" max="2023" step="1" class="form-control @error('year') is-invalid @enderror"" id="year" placeholder="Inserisci l'anno di creazione" name="year" value="{{ old('year' , $project->year)}}">
+      <input type="number" min="1950" max="2023" step="1" class="form-control @error('year') is-invalid @enderror"" id="year" placeholder="Inserisci l'anno di creazione" name="year" value="{{ old('year' , $project->year)}}">
     @error('year')
             <div class="invalid-feedback">
                 {{ $message }}

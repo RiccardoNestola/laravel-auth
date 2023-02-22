@@ -4,8 +4,8 @@
 
 <div class="container">
     <div class="d-flex">
-              <div class="py-4 d-flex justify-content-between flex-grow-1">
-                   <h3>Crean un nuovo progetto</h3>
+              <div class="py-4 d-flex justify-content-between">
+                   <h3>Crea un nuovo progetto</h3>
               </div>
                 
             </div>

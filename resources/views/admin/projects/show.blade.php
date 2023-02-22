@@ -3,8 +3,8 @@
 @section('content')
  <div class="container my-5">
   <div class="d-flex">
-              <div class="py-4 d-flex justify-content-between flex-grow-1">
-                   <h2 class="text-uppercase">{{$project->title}}</h2>
+              <div class="py-4 d-flex justify-content-between">
+                  <h2 class="text-uppercase">{{$project->title}}</h2>
               </div>
                 
             </div>
