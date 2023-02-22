@@ -2,7 +2,11 @@
 @section('title', 'Cestino')
 @section('content')
 <div class="container">
-            <div class="py-4 d-flex justify-content-end">
+            <div class="d-flex">
+              <div class="py-4 d-flex justify-content-between flex-grow-1">
+                   <h3>Cestino</h3>
+              </div>
+              <div class="py-4 d-flex">
                 <a class="btn btn-secondary btn-sm p-2 g-2" href="{{ route ("admin.projects.index")}}">Indietro</a>
                 <a class="btn btn-danger btn-sm p-2 ms-2 position-relative" href="{{ route ("admin.projects.trashed")}}"><i class="fa-solid fa-trash p-1"></i>Cestino
                 
@@ -19,7 +23,11 @@
                   </form>            
                 @endif                   
 
+              </div>
+                
             </div>
+
+
             <table class="table table-striped table-hover">
                 <thead>
                   <tr>

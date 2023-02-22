@@ -2,12 +2,18 @@
 @section('title', 'Visualizza')
 @section('content')
  <div class="container my-5">
+  <div class="d-flex">
+              <div class="py-4 d-flex justify-content-between flex-grow-1">
+                   <h2 class="text-uppercase">{{$project->title}}</h2>
+              </div>
+                
+            </div>
         <div class="row">
           <div class="col-md-6">
             <img src="{{$project->thumb}}" alt="Img" class="img-fluid">
           </div>
           <div class="col-md-6">
-            <h2 class="mb-3">{{$project->title}}</h2>
+            {{-- <h2 class="mb-3">{{$project->title}}</h2> --}}
             <h4>Descrizione</h4>
             </p> {{$project->description}}</p>
             <h4>Categoria</h4>
