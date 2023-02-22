@@ -21,7 +21,7 @@ Route::get('/', [GuestController::class, "index"])->name("welcolme");
 
 
 /* Route::get('/', [ProjectController::class, "index"])->name("welcolme");
-Route::dele('/', [ProjectController::class, "index"])->name("welcolme"); */
+Route::delete('/', [ProjectController::class, "index"])->name("welcolme"); */
 
 
 
@@ -31,6 +31,9 @@ Route::middleware(['auth', 'verified'])
 ->group(function () {
     Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
     Route::get('projects/trashed', [ProjectController::class, "trashed"])->name("projects.trashed");
+    Route::get('projects/{project}/restore', [ProjectController::class, "restore"])->name("projects.restore");
+    Route::delete('projects/{project}/force-delete', [ProjectController::class, "forceDelete"])->name("projects.force-delete");
+    Route::post('admin/restore-all', [ProjectController::class, 'restoreAll'])->name('restore-all');
     Route::resource('/projects', ProjectController::class);
 });
 

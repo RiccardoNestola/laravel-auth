@@ -4,9 +4,21 @@
 <div class="container">
             <div class="py-4 d-flex justify-content-end">
                 <a class="btn btn-secondary btn-sm p-2 g-2" href="{{ route ("admin.projects.index")}}">Indietro</a>
-                <a class="btn btn-danger btn-sm p-2 ms-2" href="{{ route ("admin.projects.trashed")}}"><i class="fa-solid fa-trash p-1"></i></a>
-                <a class="btn btn-success btn-sm ms-2" href="{{ route ("admin.projects.create")}}"><i class="fa-solid fa-plus text-white p-2"></i></a>
+                <a class="btn btn-danger btn-sm p-2 ms-2 position-relative" href="{{ route ("admin.projects.trashed")}}"><i class="fa-solid fa-trash p-1"></i>Cestino
                 
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                      {{count($projects)}}
+                    </span>
+                </a>
+                {{-- <a class="btn btn-success btn-sm ms-2" href="{{ route ("admin.projects.create")}}"><i class="fa-solid fa-trash-can-arrow-up p-2"></i>Ripristina tutto</a> --}}
+
+
+                @if (count($projects))
+                  <form class="d-inline delete double-confirm" action="{{route('admin.restore-all')}}" method="POST" > @csrf
+                    <button type="submit" class="btn btn-success btn-sm p-2 ms-2" title="restore all"><i class="fa-solid fa-recycle p-1"></i>Ripristina tutto</button>
+                  </form>            
+                @endif                   
+
             </div>
             <table class="table table-striped table-hover">
                 <thead>
@@ -18,7 +30,7 @@
                     <th scope="col" class="d-none d-md-table-cell">Anno</th>
                     <th scope="col" class="d-none d-md-table-cell">Tecnologia</th>
                     <th scope="col" class="d-none d-md-table-cell">Data Progetto</th>
-                   {{--  <th scope="col" class="d-none d-md-table-cell">Immagine</th> --}}
+                  {{--  <th scope="col" class="d-none d-md-table-cell">Immagine</th> --}}
                     <th scope="col" class="d-none d-md-table-cell"><i class="bi bi-pencil-fill"></i></th>
                   </tr>
                 </thead>
@@ -35,26 +47,26 @@
 {{--                     <td class="d-none d-md-table-cell"><img class="img-fluid rounded " src="{{$project->thumb}}" alt="{{$project->title}}"></td>
  --}}                
                     <td>
-                      <form action="{{ route ("admin.projects.edit", $project->id) }}" method="GET">
+                      <form action="{{ route ("admin.projects.restore", $project->id) }}" method="GET">
                         
-                        <button class="btn btn-warning btn-sm" type="submit"><i class="fa-solid fa-pen-to-square text-white"></i></button>
+                        <button class="btn btn-success btn-sm" type="submit"><i class="fa-solid fa-trash-can-arrow-up"></i>Ripristina</button>
                       
                       </form>
                         
                     </td>
                     <td>
-                        <form class="form-delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.destroy', $project->id)}}" method="post">
+                        <form class="form-delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.force-delete', $project->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button  class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i></button>
+                          <button  class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i> Elimina</button>
                         </form>
                     </td>
                     @endforeach
                   </tr>
                 </tbody>
               </table>
-              
+              {{-- {{ $projects->links() }} --}}
         </div>
 
-        
+
 @endsection

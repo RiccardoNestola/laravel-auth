@@ -4,8 +4,8 @@
 <div class="container">
             <div class="py-4 d-flex justify-content-end">
                 <a class="btn btn-secondary btn-sm p-2 g-2 bs-info-text" href="{{ route ("admin.dashboard")}}">Dashboard</a>
-                <a class="btn btn-danger btn-sm p-2 ms-2" href="{{ route ("admin.projects.trashed")}}"><i class="fa-solid fa-trash p-1"></i></a>
-                <a class="btn btn-success btn-sm ms-2" href="{{ route ("admin.projects.create")}}"><i class="fa-solid fa-plus text-white p-2"></i></a>
+                <a class="btn btn-danger btn-sm p-2 ms-2" href="{{ route ("admin.projects.trashed")}}"><i class="fa-solid fa-trash p-1"></i>Cestino</a>
+                <a class="btn btn-success btn-sm ms-2" href="{{ route ("admin.projects.create")}}"><i class="fa-solid fa-plus text-white p-2"></i>Aggiungi nuovo</a>
                 
             </div>
             <table class="table table-striped table-hover">
