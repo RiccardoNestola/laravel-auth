@@ -7,12 +7,18 @@
             <img src="{{$project->thumb}}" alt="Img" class="img-fluid">
           </div>
           <div class="col-md-6">
-            <h2 class="my-3">{{$project->title}}</h2>
-            <p><strong>Descrizione</strong> {{$project->description}}</p>
-            <p><strong>Categoria</strong> {{$project->category}}</p>
-            <p><strong>Anno</strong> {{$project->year}}</p>
-            <p><strong>Tecnologia usata</strong> {{$project->technology_used}}</p>
-            <p><strong>ID:</strong>{{$project->id}}</p>
+            <h2 class="mb-3">{{$project->title}}</h2>
+            <h4>Descrizione</h4>
+            </p> {{$project->description}}</p>
+            <h4>Categoria</h4>
+            <p>{{$project->category}}</p>
+            <h4>Anno</h4>
+            <p>{{$project->year}}</p>
+            <h4>Tecnologia usata</h4>
+            <p>{{$project->technology_used}}</p>
+            <h4>Data Progetto</h4>
+            <p>{{$project->date_added}}</p>
+            <p class="fw-bold">ID:{{$project->id}}</p>
             
 
             <form class="d-inline-block" action="{{ route ("admin.projects.index") }}" method="GET">

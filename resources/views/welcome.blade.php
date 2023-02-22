@@ -8,7 +8,7 @@
 @foreach ($projects as $project)
 		<article class="postcard light blue">
 			<a class="postcard__img_link" href="#">
-				<img class="postcard__img" src="https://picsum.photos/1000/1000" alt="{{$project->title}}" /> {{-- {{$project->thumb}}" alt="{{$project->title}} --}}
+				<img class="postcard__img" src="{{$project->thumb}}" alt="{{$project->title}}" /> {{-- {{$project->thumb}}" alt="{{$project->title}} --}}
 			</a>
 			<div class="postcard__text tx-dark">
 				<h1 class="postcard__title blue"><a href="#">{{$project->title}}</a></h1>

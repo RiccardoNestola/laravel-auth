@@ -13,7 +13,7 @@ class ProjectController extends Controller
     protected $rules =
     [
         'title' => 'required|string|min:2|max:200',
-        'description' => 'required|min:2|max:200',
+        'description' => 'required|min:2|max:600',
         'category' => 'required|min:2|max:100',
         'year' => 'required|integer|between:1950,2023',
         'technology_used' => 'min:2',
@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
         'description.required' => 'E\' necessario inserire una descrizione',
         'description.min' => 'La descrizione deve contenere almeno 2 caratteri',
-        'description.max' => 'La descrizione può essere più lungo 200 caratteri',
+        'description.max' => 'La descrizione non può essere più lunga di 600 caratteri',
 
         'category.required' => 'Inserisci una almeno una categoria',
         'category.min' => 'Il numero di caratteri deve essere almeno di due',
@@ -142,4 +142,28 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.projects.index');
     }
+
+
+
+    /**
+     * Display a listing of trashed resources.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function trashed(Project $project)
+    {
+
+        $projects = Project::onlyTrashed()->get();
+        return view('admin.projects.trashed', compact('projects'));
+    }
+
+
+
+
+
+
+
 }
+
+
+    

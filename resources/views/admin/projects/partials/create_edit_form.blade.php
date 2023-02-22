@@ -66,10 +66,10 @@
             </div>
             @enderror    
     </div>
-   {{--  <label for="date" class="col-sm-1 col-form-label fw-bold">Data</label>
+    <label for="date" class="col-sm-1 col-form-label fw-bold">Data</label>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="date" placeholder="Inserisci la data d'inserimento progetto" name="date" value="{{ old('date' , $project->date)}}">
-    </div> --}}
+      <input type="date" class="form-control" id="date" placeholder="Inserisci la data d'inserimento progetto" name="date_added" value="{{ old('date_added' , $project->date_added)}}">
+    </div>
   </div>
   <div class="form-group row p-3">
     <div class="col-sm-12">

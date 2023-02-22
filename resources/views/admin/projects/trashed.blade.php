@@ -1,9 +1,9 @@
 @extends('layouts.admin')
-@section('title', 'Elenco - Progetti')
+@section('title', 'Cestino')
 @section('content')
 <div class="container">
             <div class="py-4 d-flex justify-content-end">
-                <a class="btn btn-secondary btn-sm p-2 g-2 bs-info-text" href="{{ route ("admin.dashboard")}}">Dashboard</a>
+                <a class="btn btn-secondary btn-sm p-2 g-2" href="{{ route ("admin.projects.index")}}">Indietro</a>
                 <a class="btn btn-danger btn-sm p-2 ms-2" href="{{ route ("admin.projects.trashed")}}"><i class="fa-solid fa-trash p-1"></i></a>
                 <a class="btn btn-success btn-sm ms-2" href="{{ route ("admin.projects.create")}}"><i class="fa-solid fa-plus text-white p-2"></i></a>
                 
@@ -33,9 +33,7 @@
                     <td class="d-none d-md-table-cell">{{$project->technology_used}}</td>
                     <td class="d-none d-md-table-cell">{{$project->date_added}}</td>
 {{--                     <td class="d-none d-md-table-cell"><img class="img-fluid rounded " src="{{$project->thumb}}" alt="{{$project->title}}"></td>
- --}}                    <td>
-                      <a href="{{ route("admin.projects.show", $project->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </td>
+ --}}                
                     <td>
                       <form action="{{ route ("admin.projects.edit", $project->id) }}" method="GET">
                         
@@ -55,7 +53,7 @@
                   </tr>
                 </tbody>
               </table>
-              {{ $projects->links() }}
+              
         </div>
 
         

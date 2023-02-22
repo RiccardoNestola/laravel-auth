@@ -20,12 +20,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [GuestController::class, "index"])->name("welcolme");
 
 
+/* Route::get('/', [ProjectController::class, "index"])->name("welcolme");
+Route::dele('/', [ProjectController::class, "index"])->name("welcolme"); */
+
+
 
 Route::middleware(['auth', 'verified'])
 ->name('admin.')
 ->prefix('admin')
 ->group(function () {
     Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
+    Route::get('projects/trashed', [ProjectController::class, "trashed"])->name("projects.trashed");
     Route::resource('/projects', ProjectController::class);
 });
 
