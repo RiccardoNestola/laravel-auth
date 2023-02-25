@@ -10,7 +10,7 @@
             </div>
         <div class="row">
           <div class="col-md-6">
-            <img src="{{$project->thumb}}" alt="Img" class="img-fluid">
+            <img src="{{ asset("storage/". $project->thumb  ) }}" alt="Img" class="img-fluid">
           </div>
           <div class="col-md-6">
             {{-- <h2 class="mb-3">{{$project->title}}</h2> --}}

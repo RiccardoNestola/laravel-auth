@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -17,7 +18,9 @@ class ProjectController extends Controller
         'category' => 'required|min:2|max:100',
         'year' => 'required|integer|between:1950,2023',
         'technology_used' => 'min:2',
-        'thumb' => 'required|url|min:5',
+        'thumb' => 'required|image',
+        'date_added' => 'required|string|min:2|max:200',
+
     ];
 
     protected $messages = [
@@ -38,9 +41,9 @@ class ProjectController extends Controller
         'technology_used.min' => 'Il numero di caratteri deve essere almeno di due',
 
         'thumb.required' => 'Inserisci un link per la tua immagine',
-        'thumb.url' => 'Inserisci una URL valido per la tua immagine',
-        'thumb.min' => 'La tua immagine deve contenere almeno 5 caratteri',
+        'thumb.image' => 'Inserisci un immagine valida',
 
+        'date_added' => 'Insierisci una data'
         
     ];
 
@@ -78,12 +81,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
+        /* dd($request->all()); */
         $formData = $request->all();
         $request->validate($this->rules, $this->messages);
         $newProject = new Project();
         $newProject->fill($formData);
-
+        $newProject -> thumb = Storage::put('uploads', $formData["thumb"]);
 
         $newProject->save();
 
@@ -98,6 +101,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+       /*  dd($project); */
         return view('admin.projects.show', compact('project'));
     }
 

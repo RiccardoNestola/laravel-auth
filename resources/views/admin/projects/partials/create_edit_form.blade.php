@@ -1,8 +1,8 @@
 @if ($errors->any())
-    <div id="popup_message" class="d-none" data-type="warning" data-message="Check errors"></div>
+    <div id="popup_message" class="d-none" data-type="warning" data-message="Ci sono degli errori"></div>
 @endif
 
-<form class="pt-3" action="{{ route ("admin.projects.store") }}" method="POST"> @csrf
+<form class="pt-3" action="{{ route ("admin.projects.store") }}" method="POST" enctype="multipart/form-data"> @csrf
   <div class="form-group row p-3">
     <label for="title" class="col-sm-2 col-form-label fw-bold">Titolo</label>
     <div class="col-sm-10">
@@ -61,16 +61,21 @@
   <div class="form-group row p-3">
     <label for="thumb" class="col-sm-2 col-form-label fw-bold">Immagine</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control @error('thumb') is-invalid @enderror"" id="thumb" placeholder="Inserisci un link per la tua immagine" name="thumb" value="{{ old('thumb' , $project->thumb)}}">
+      <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb" placeholder="Inserisci un link per la tua immagine" name="thumb" value="{{ old('thumb' , $project->thumb)}}">
     @error('thumb')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror    
     </div>
-    <label for="date" class="col-sm-1 col-form-label fw-bold">Data</label>
+    <label for="date" class="col-sm-1 col-form-label fw-bold">Data progetto</label>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="date" placeholder="Inserisci la data d'inserimento progetto" name="date_added" value="{{ old('date_added' , $project->date_added)}}">
+      <input type="date" class="form-control @error('date_added') is-invalid @enderror" id="date" placeholder="Inserisci la data d'inserimento progetto" name="date_added" value="{{ old('date_added' , $project->date_added)}}">
+      @error('date_added')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror    
     </div>
   </div>
   <div class="form-group row p-3">
