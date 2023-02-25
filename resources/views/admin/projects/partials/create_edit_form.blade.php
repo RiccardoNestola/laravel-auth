@@ -61,7 +61,7 @@
   <div class="form-group row p-3">
     <label for="thumb" class="col-sm-2 col-form-label fw-bold">Immagine</label>
     <div class="col-sm-5">
-      <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb" placeholder="Inserisci un link per la tua immagine" name="thumb" value="{{ old('thumb' , $project->thumb)}}">
+      <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb" placeholder="Inserisci un link per la tua immagine" name="thumb" value="{{ old('thumb' , asset("storage/". $project->thumb  ))}}  ">
     @error('thumb')
             <div class="invalid-feedback">
                 {{ $message }}
