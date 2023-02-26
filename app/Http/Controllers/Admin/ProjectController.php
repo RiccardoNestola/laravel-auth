@@ -200,15 +200,19 @@ class ProjectController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function forceDelete( $id, Project $project)
+    public function forceDelete( $id)
     
     {
-        if ($project->thumb) {
+        $project = Project::withTrashed()->find($id);
+        $project->forceDelete();
+
+
+        if (!$project->isImageAUrl()) {
             Storage::delete($project->thumb);
         }
 
 
-        Project::where('id', $id)->withTrashed()->forceDelete();
+        /* Project::where('id', $id)->withTrashed()->forceDelete(); */
         return redirect()->route('admin.projects.trashed')->with('alert-message', "Cancellato definitivamente")->with('alert-type', 'success');
     }
 
