@@ -63,7 +63,7 @@
                         
                     </td>
                     <td>
-                        <form class="form-delete delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.force-delete', $project->id)}}" method="post">
+                        <form class="form-delete delete" data-element-name="{{ $project->title}}" action="{{ route('admin.projects.force-delete', $project->id )}}" method="post">
                           @csrf
                           @method('DELETE')
                           <button  class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i> Elimina</button>

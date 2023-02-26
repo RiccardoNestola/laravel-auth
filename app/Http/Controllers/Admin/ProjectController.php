@@ -123,15 +123,26 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
 
-        $formData = $request->all();
-        $request->validate($this->rules, $this->messages);
-        $project = Project::findOrFail($id);
+        
+        $formData = $request->validate($this->rules, $this->messages);
+        /* $project = Project::findOrFail($id); */
+
+
+        if ($request->hasFile('thumb')) {
+
+            if (!$project->isImageAUrl()) {
+                Storage::delete($project->thumb);
+            }
+        }
+
+
+        $formData["thumb"] = Storage::put('uploads', $formData["thumb"]);
         $project->update($formData);
 
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', compact('project'));
     }
 
     /**
@@ -143,7 +154,12 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     
     {
-        Storage::delete($project->thumb);
+        /* Storage::delete($project->thumb); */
+
+       /*  if ($project->thumb) {
+            Storage::delete($project->thumb);
+        } */
+
         $project->delete();
 
         return redirect()->route('admin.projects.index');
@@ -174,7 +190,7 @@ class ProjectController extends Controller
     public function restore($id)
     {
         Project::where('id', $id)->withTrashed()->restore();
-        return redirect()->route('admin.projects.index')->with('alert-message', "Restored successfully")->with('alert-type', 'success');
+        return redirect()->route('admin.projects.index')->with('alert-message', "Ripristinato con successo")->with('alert-type', 'success');
     }
 
     /**
@@ -184,10 +200,16 @@ class ProjectController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function forceDelete($id)
+    public function forceDelete( $id, Project $project)
+    
     {
+        if ($project->thumb) {
+            Storage::delete($project->thumb);
+        }
+
+
         Project::where('id', $id)->withTrashed()->forceDelete();
-        return redirect()->route('admin.projects.trashed')->with('alert-message', "Delete definitely")->with('alert-type', 'success');
+        return redirect()->route('admin.projects.trashed')->with('alert-message', "Cancellato definitivamente")->with('alert-type', 'success');
     }
 
 
@@ -199,7 +221,7 @@ class ProjectController extends Controller
     public function restoreAll()
     {
         Project::onlyTrashed()->restore();
-        return redirect()->route('admin.projects.index')->with('alert-message', "All books restored successfully")->with('alert-type', 'success');
+        return redirect()->route('admin.projects.index')->with('alert-message', "Tutti i progetti sono stati ripristinati")->with('alert-type', 'success');
     }
 
 

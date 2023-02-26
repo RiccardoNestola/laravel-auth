@@ -2,8 +2,9 @@
     <div id="popup_message" class="d-none" data-type="warning" data-message="Ci sono degli errori"></div>
 @endif
 
-<form class="pt-3" action="{{ route ("admin.projects.store") }}" method="POST" enctype="multipart/form-data"> @csrf
+<form class="pt-3" action="{{ route ($route, $project) }}" method="POST" enctype="multipart/form-data"> @csrf @method($method)
   <div class="form-group row p-3">
+     <p class="fw-bold text-danger">ID: &nbsp;{{$project->id}}</p>
     <label for="title" class="col-sm-2 col-form-label fw-bold">Titolo</label>
     <div class="col-sm-10">
       <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Inserisci il titolo del progetto" name="title" value="{{ old('title' , $project->title)}}">
@@ -61,7 +62,7 @@
   <div class="form-group row p-3">
     <label for="thumb" class="col-sm-2 col-form-label fw-bold">Immagine</label>
     <div class="col-sm-5">
-      <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb" placeholder="Inserisci un link per la tua immagine" name="thumb" value="{{ old('thumb', $project->thumb ) , asset("storage/". $project->thumb  )}}  ">
+      <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb"  name="thumb" value="{{ old('thumb', $project->thumb ) , asset("storage/". $project->thumb  )}}  ">
       {{-- <span value="">{{ old('thumb' , $project->thumb)}}</span> --}}
     @error('thumb')
             <div class="invalid-feedback">

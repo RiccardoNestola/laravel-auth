@@ -17,7 +17,12 @@
                 
             </div>
 
+            @if (session('alert-message'))
+              <div id="popup_message" class="d-none" data-type="{{ session('alert-type') }}" data-message="{{ session('alert-message') }}"></div>
+            @endif
+
             
+
             <table class="table table-striped table-hover">
                 <thead>
                   <tr>
@@ -28,7 +33,7 @@
                     <th scope="col" class="d-none d-md-table-cell">Anno</th>
                     <th scope="col" class="d-none d-md-table-cell">Tecnologia</th>
                     <th scope="col" class="d-none d-md-table-cell">Data Progetto</th>
-                   {{--  <th scope="col" class="d-none d-md-table-cell">Immagine</th> --}}
+                    <th scope="col" class="d-none d-md-table-cell">Immagine</th>
                     <th scope="col" class="d-none d-md-table-cell"><i class="bi bi-pencil-fill"></i></th>
                   </tr>
                 </thead>
@@ -42,8 +47,8 @@
                     <td class="d-none d-md-table-cell">{{$project->year}}</td>
                     <td class="d-none d-md-table-cell">{{$project->technology_used}}</td>
                     <td class="d-none d-md-table-cell">{{$project->date_added}}</td>
-{{--                     <td class="d-none d-md-table-cell"><img class="img-fluid rounded " src="{{$project->thumb}}" alt="{{$project->title}}"></td>
- --}}                    <td>
+                    <td class="d-none d-md-table-cell"><img class="img-fluid rounded " src="{{ asset("storage/". $project->thumb  ) }}" alt="{{$project->title}}"></td>
+                    <td>
                       <a href="{{ route("admin.projects.show", $project->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </td>
                     <td>
