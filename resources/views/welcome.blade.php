@@ -8,7 +8,12 @@
 @foreach ($projects as $project)
 		<article class="postcard light blue">
 			<a class="postcard__img_link" href="#">
-				<img class="postcard__img" src="{{ asset("storage/". $project->thumb  ) }}" alt="{{-- {{$project->title}} --}}" /> {{-- {{$project->thumb}}" alt="{{$project->title}} --}}
+				@if (str_starts_with($project->thumb, 'http'))
+                        <img src=" {{$project->thumb}}"
+                        @else
+                        <img src="{{asset('storage/'. $project->thumb)}}"
+                        @endif
+                        alt="{{$project->title}}" class="postcard__img">
 			</a>
 			<div class="postcard__text tx-dark">
 				<h1 class="postcard__title blue"><a href="#">{{$project->title}}</a></h1>
@@ -18,7 +23,7 @@
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
-				<div class="postcard__preview-txt">{{ Str::limit($project->description,200)}}</div>
+				<div class="postcard__preview-txt">{{ Str::limit($project->description,200)}}...</div>
 				<ul class="postcard__tagbox">
 					<li class="tag__item"><i class="fas fa-tag mr-2 px-1"></i>{{$project->category}}</li>
 					<li class="tag__item"><i class="fa-regular fa-calendar px-1"></i>{{$project->year}}</li>

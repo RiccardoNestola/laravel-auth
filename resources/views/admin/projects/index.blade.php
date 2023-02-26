@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Elenco - Progetti')
 @section('content')
-@include('admin.projects.partials.popup')
+{{-- @include('admin.projects.partials.popup') --}}
 <div class="container">
 
    
@@ -46,9 +46,21 @@
                     <td class="d-none d-md-table-cell">{{$project->category}}</td>
                     <td class="d-none d-md-table-cell">{{$project->year}}</td>
                     <td class="d-none d-md-table-cell">{{$project->technology_used}}</td>
-                    <td class="d-none d-md-table-cell">{{$project->date_added}}</td>
-                    <td class="d-none d-md-table-cell"><img class="img-fluid rounded " src="{{ asset("storage/". $project->thumb  ) }}" alt="{{$project->title}}"></td>
+                    <td class="d-none d-md-table-cell w-25">{{$project->date_added}}</td>
+                    {{-- <td class="d-none d-md-table-cell">
+                      <img class="img-fluid rounded " src="{{ asset("storage/". $project->thumb  ) }}" alt="{{$project->title}}"></td>
+                    <td> --}}
+                    <td class="d-none d-md-table-cell">
+                      @if (str_starts_with($project->thumb, 'http'))
+                        <img src=" {{$project->thumb}}"
+                        @else
+                        <img src="{{asset('storage/'. $project->thumb)}}"
+                        @endif
+                        alt="{{$project->title}}" class="img-fluid rounded ">
                     <td>
+
+
+
                       <a href="{{ route("admin.projects.show", $project->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </td>
                     <td>
@@ -70,7 +82,10 @@
                   </tr>
                 </tbody>
               </table>
-              {{ $projects->links() }}
+              <div>
+                  {{ $projects->links() }}
+              </div>
+             
         </div>
 
         

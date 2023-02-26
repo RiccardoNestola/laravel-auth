@@ -10,7 +10,12 @@
             </div>
         <div class="row">
           <div class="col-md-6">
-            <img src="{{ asset("storage/". $project->thumb  ) }}" alt="Img" class="img-fluid">
+            @if (str_starts_with($project->thumb, 'http'))
+                        <img src=" {{$project->thumb}}"
+                        @else
+                        <img src="{{asset('storage/'. $project->thumb)}}"
+                        @endif
+                        alt="{{$project->title}}" class="img-fluid rounded ">
           </div>
           <div class="col-md-6">
             {{-- <h2 class="mb-3">{{$project->title}}</h2> --}}

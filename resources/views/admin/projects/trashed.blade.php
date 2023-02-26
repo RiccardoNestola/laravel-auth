@@ -73,7 +73,7 @@
                   </tr>
                 </tbody>
               </table>
-              {{-- {{ $projects->links() }} --}}
+              {{ $projects->links() }}
         </div>
 
 

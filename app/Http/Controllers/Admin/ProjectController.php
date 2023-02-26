@@ -57,7 +57,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::paginate(20);
+        $projects = Project::orderBy('date_added', 'DESC')->paginate(20);
+        /* $projects = Project::paginate(20); */
         return view( "admin.projects.index",  compact("projects"));
 
     }
@@ -162,7 +163,7 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('alert-message', "Spostato nel cestino")->with('alert-type', 'success');
     }
 
 
@@ -172,10 +173,10 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function trashed(Project $project)
+    public function trashed(/* Project $project */)
     {
         
-        $projects = Project::onlyTrashed()->get();
+        $projects = Project::onlyTrashed()->paginate(10);
         return view('admin.projects.trashed', compact('projects'));
     }
 
